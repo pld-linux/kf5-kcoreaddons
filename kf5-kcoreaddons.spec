@@ -23,6 +23,8 @@ BuildRequires:	kf5-extra-cmake-modules >= 1.0.0
 BuildRequires:	qt5-linguist
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt5dir		%{_libdir}/qt5
