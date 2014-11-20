@@ -1,28 +1,29 @@
+#
+# Conditional build:
+%bcond_without	tests		# build without tests
+
 # TODO:
 # - runtime Requires if any
 # - dir /usr/include/KF5 not packaged
 
-%bcond_without	tests
-
-%define		orgname		kcoreaddons
 %define		kdeframever	5.4
-%define		qt_ver		5.3.2
-
+%define		qtver		5.3.2
+%define		kfname		kcoreaddons
 Summary:	Utilities for core application functionality and accessing the OS
-Name:		kf5-%{orgname}
+Name:		kf5-%{kfname}
 Version:	5.4.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{orgname}-%{version}.tar.xz
+Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
 # Source0-md5:	4946f5145126de7bf293c3140194e966
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Core-devel >= %{qt_ver}
-BuildRequires:	Qt5Test-devel >= %{qt_ver}
+BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5Test-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	fam-devel
 BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
-BuildRequires:	qt5-linguist >= %{qt_ver}
+BuildRequires:	qt5-linguist >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
@@ -37,19 +38,19 @@ manipulations such as macro replacement, accessing user information
 and many more.
 
 %package devel
-Summary:	Header files for %{orgname} development
-Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{orgname}
+Summary:	Header files for %{kfname} development
+Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kfname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Header files for %{orgname} development.
+Header files for %{kfname} development.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe dla programistów używających %{orgname}.
+Pliki nagłówkowe dla programistów używających %{kfname}.
 
 %prep
-%setup -q -n %{orgname}-%{version}
+%setup -q -n %{kfname}-%{version}
 
 %build
 install -d build
@@ -64,24 +65,23 @@ cd build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} -C build/ install \
+%{__make} -C build install \
         DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{orgname}5_qt --with-qm
+%find_lang %{kfname}5_qt --with-qm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
-%files -f %{orgname}5_qt.lang
+%files -f %{kfname}5_qt.lang
 %defattr(644,root,root,755)
 %doc README.md
 %{_datadir}/mime/packages/kde5.xml
-%attr(755,root,root) %ghost %{_libdir}/libKF5CoreAddons.so.5
 %attr(755,root,root) %{_libdir}/libKF5CoreAddons.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libKF5CoreAddons.so.5
 
 %files devel
 %defattr(644,root,root,755)
