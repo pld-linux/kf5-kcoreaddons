@@ -57,7 +57,6 @@ install -d build
 cd build
 %cmake \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	-DBIN_INSTALL_DIR=%{_bindir} \
 	../
 %{__make}
 
