@@ -4,7 +4,6 @@
 
 # TODO:
 # - runtime Requires if any
-# - dir /usr/include/KF5 not packaged
 
 %define		kdeframever	5.4
 %define		qtver		5.3.2
