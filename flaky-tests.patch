@@ -1,0 +1,29 @@
+--- kcoreaddons-5.19.0/autotests/CMakeLists.txt~	2016-02-06 22:39:47.000000000 +0900
++++ kcoreaddons-5.19.0/autotests/CMakeLists.txt	2016-04-09 10:36:43.292405021 +0900
+@@ -27,17 +27,14 @@
+ add_definitions( -DKDELIBS4CONFIGMIGRATOR_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data" )
+ 
+ ecm_add_tests(
+-    kaboutdatatest.cpp
+     kautosavefiletest.cpp
+     kcompositejobtest.cpp
+     kformattest.cpp
+     kjobtest.cpp
+     kpluginfactorytest.cpp
+     kpluginloadertest.cpp
+-    kpluginmetadatatest.cpp
+     kprocesstest.cpp
+     kshareddatacachetest.cpp
+-    kshelltest.cpp
+     kurlmimedatatest.cpp
+     kstringhandlertest.cpp
+     kusertest.cpp
+@@ -65,8 +65,6 @@
+     ALWAYSUNLOADPLUGIN_FILE="$<TARGET_FILE:alwaysunloadplugin>"
+ )
+ 
+-set(KDIRWATCH_BACKENDS_TO_TEST Stat)#Stat is always compiled
+-
+ if (HAVE_SYS_INOTIFY_H)
+     list(APPEND KDIRWATCH_BACKENDS_TO_TEST INotify)
+ endif()
