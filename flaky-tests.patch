@@ -18,12 +18,31 @@
      kurlmimedatatest.cpp
      kstringhandlertest.cpp
      kusertest.cpp
-@@ -65,8 +65,6 @@
+@@ -67,27 +64,3 @@
+     MULTIPLUGIN_FILE="$<TARGET_FILE:multiplugin>"
      ALWAYSUNLOADPLUGIN_FILE="$<TARGET_FILE:alwaysunloadplugin>"
  )
- 
+-
 -set(KDIRWATCH_BACKENDS_TO_TEST Stat)#Stat is always compiled
 -
- if (HAVE_SYS_INOTIFY_H)
-     list(APPEND KDIRWATCH_BACKENDS_TO_TEST INotify)
- endif()
+-if (HAVE_SYS_INOTIFY_H)
+-    list(APPEND KDIRWATCH_BACKENDS_TO_TEST INotify)
+-endif()
+-
+-if (HAVE_FAM)
+-    list(APPEND KDIRWATCH_BACKENDS_TO_TEST Fam)
+-endif()
+-
+-if (HAVE_QFILESYSTEMWATCHER)
+-    list(APPEND KDIRWATCH_BACKENDS_TO_TEST QFSWatch)
+-endif()
+-
+-foreach(_backendName ${KDIRWATCH_BACKENDS_TO_TEST})
+-    string(TOLOWER ${_backendName} _lowercaseBackendName)
+-    set(BACKEND_TEST_TARGET kdirwatch_${_lowercaseBackendName}_unittest)
+-    add_executable(${BACKEND_TEST_TARGET} kdirwatch_unittest.cpp)
+-    target_link_libraries(${BACKEND_TEST_TARGET} Qt5::Test KF5::CoreAddons)
+-    ecm_mark_as_test(${BACKEND_TEST_TARGET})
+-    add_test(NAME ${BACKEND_TEST_TARGET} COMMAND ${BACKEND_TEST_TARGET})
+-    target_compile_definitions(${BACKEND_TEST_TARGET} PUBLIC -DKDIRWATCH_TEST_METHOD=\"${_backendName}\")
+-endforeach()
