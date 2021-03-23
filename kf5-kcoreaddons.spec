@@ -6,7 +6,7 @@
 # - runtime Requires if any
 
 %define		kdeframever	5.80
-%define		qtver		5.9.0
+%define		qtver		5.14.0
 %define		kfname		kcoreaddons
 Summary:	Utilities for core application functionality and accessing the OS
 Name:		kf5-%{kfname}
@@ -19,16 +19,20 @@ Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{ve
 Patch0:		flaky-tests.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
+%if %{with tests}
 BuildRequires:	Qt5Test-devel >= %{qtver}
-BuildRequires:	cmake >= 2.8.12
+BuildRequires:	Qt5Widgets-devel >= %{qtver}
+%endif
+BuildRequires:	cmake >= 3.5
 BuildRequires:	fam-devel
-BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
+BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	ninja
 BuildRequires:	qt5-linguist >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
-BuildRequires:	shared-mime-info
+BuildRequires:	shared-mime-info >= 1.3
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires:	Qt5Core >= %{qtver}
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,7 +49,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kfname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	Qt5Core >= %{qtver}
-Requires:	cmake >= 2.6.0
+Requires:	cmake >= 3.5
 
 %description devel
 Header files for %{kfname} development.
