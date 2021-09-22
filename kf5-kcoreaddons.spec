@@ -6,7 +6,7 @@
 # - runtime Requires if any
 
 %define		kdeframever	5.86
-%define		qtver		5.14.0
+%define		qtver		5.15.2
 %define		kfname		kcoreaddons
 Summary:	Utilities for core application functionality and accessing the OS
 Name:		kf5-%{kfname}
@@ -23,7 +23,7 @@ BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
 BuildRequires:	Qt5Widgets-devel >= %{qtver}
 %endif
-BuildRequires:	cmake >= 3.5
+BuildRequires:	cmake >= 3.16
 BuildRequires:	fam-devel
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	ninja
@@ -49,7 +49,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kfname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	Qt5Core >= %{qtver}
-Requires:	cmake >= 3.5
+Requires:	cmake >= 3.16
 
 %description devel
 Header files for %{kfname} development.
