@@ -5,17 +5,17 @@
 # TODO:
 # - runtime Requires if any
 
-%define		kdeframever	5.90
+%define		kdeframever	5.91
 %define		qtver		5.15.2
 %define		kfname		kcoreaddons
 Summary:	Utilities for core application functionality and accessing the OS
 Name:		kf5-%{kfname}
-Version:	5.90.0
+Version:	5.91.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	f481c9b2099565493d6bff90eaa2ad8e
+# Source0-md5:	4d39a971050164eca9cfd17267fbd49d
 Patch0:		flaky-tests.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
@@ -107,7 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/desktoptojson
 %{_includedir}/KF5/KCoreAddons
-%{_includedir}/KF5/kcoreaddons_version.h
 %{_libdir}/cmake/KF5CoreAddons
 %{_libdir}/libKF5CoreAddons.so
 %{_libdir}/qt5/mkspecs/modules/qt_KCoreAddons.pri
