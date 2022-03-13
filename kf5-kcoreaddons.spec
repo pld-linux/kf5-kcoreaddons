@@ -5,17 +5,17 @@
 # TODO:
 # - runtime Requires if any
 
-%define		kdeframever	5.91
+%define		kdeframever	5.92
 %define		qtver		5.15.2
 %define		kfname		kcoreaddons
 Summary:	Utilities for core application functionality and accessing the OS
 Name:		kf5-%{kfname}
-Version:	5.91.0
+Version:	5.92.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	4d39a971050164eca9cfd17267fbd49d
+# Source0-md5:	0cbeb3e8ece398e3645a82d28fe29a85
 Patch0:		flaky-tests.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
@@ -24,7 +24,6 @@ BuildRequires:	Qt5Test-devel >= %{qtver}
 BuildRequires:	Qt5Widgets-devel >= %{qtver}
 %endif
 BuildRequires:	cmake >= 3.16
-BuildRequires:	fam-devel
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	ninja
 BuildRequires:	qt5-linguist >= %{qtver}
@@ -91,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libKF5CoreAddons.so.5
 %dir %{_libdir}/qt5/plugins/namespace
 %attr(755,root,root) %{_libdir}/qt5/plugins/namespace/jsonplugin_cmake_macro.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/namespace/pluginwithoutmetadata.so
 %{_datadir}/qlogging-categories5/kcoreaddons.categories
 %dir %{_datadir}/kf5/licenses
 %{_datadir}/kf5/licenses/ARTISTIC
