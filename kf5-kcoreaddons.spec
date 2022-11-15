@@ -11,7 +11,7 @@
 Summary:	Utilities for core application functionality and accessing the OS
 Name:		kf5-%{kfname}
 Version:	5.100.0
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
 # not supported by glibc yet
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/tok
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{ie,tok}
 
 %find_lang %{kfname}5_qt --with-qm --all-name --with-kde
 
